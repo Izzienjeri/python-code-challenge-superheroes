@@ -3,6 +3,7 @@
 from flask import Flask, make_response, jsonify, request
 from flask_migrate import Migrate
 from flask_restful import Api, Resource
+from flask_cors import CORS
 
 from models import db, Hero, Power, HeroPower
 
@@ -48,7 +49,7 @@ class OneHero(Resource):
            response_dict2 = {
                "error": "Hero not found"
            }
-           response2 = make_response(jsonify(response_dict2), 404)
+           response2 = make_response(jsonify(response_dict2), 400)
            return response2
        
 api.add_resource(OneHero, '/heroes/<int:id>')
@@ -73,7 +74,7 @@ class OnePower(Resource):
             response_dict2 = {
                 "error": "Power not found"
             }
-            response2 = make_response(jsonify(response_dict2), 404)
+            response2 = make_response(jsonify(response_dict2), 400)
             return response2
         
     def patch(self, id):
@@ -94,8 +95,8 @@ class OnePower(Resource):
             response_dict2 = {
                 "error": "Power not found"
             }
-            response2 = make_response(jsonify(response_dict2, 404))
-            return response2
+            response = make_response(jsonify(response_dict2, 400))
+            return response
         
 api.add_resource(OnePower, '/powers/<int:id>')
 
@@ -123,7 +124,8 @@ class HeroPowers(Resource):
     
             }
 
-            response = make_response(jsonify(response_dict2), 404)
+            response = make_response(jsonify(response_dict2), 400)
+            return response
     
 api.add_resource(HeroPowers, '/hero_powers')
 

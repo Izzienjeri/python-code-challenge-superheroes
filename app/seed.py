@@ -15,7 +15,7 @@ with app.app_context():
         power = Power(**power_data)
         db.session.add(power)
     db.session.commit()
-    print("🦸‍♀️ Powers seeded!")
+    print("Powers seeded!")
 
     heroes = [
         { 'name': "Kamala Khan", 'super_name': "Ms. Marvel" },
@@ -33,7 +33,7 @@ with app.app_context():
         hero = Hero(**hero_data)
         db.session.add(hero)
     db.session.commit()
-    print("🦸‍♀️ Heroes seeded!")
+    print("Heroes seeded!")
 
     strengths = ["Strong", "Weak", "Average"]
     heroes = Hero.query.all()
@@ -44,4 +44,4 @@ with app.app_context():
             hero_power = HeroPower(hero_id=hero.id, power_id=power.id, strength=random.choice(strengths))
             db.session.add(hero_power)
     db.session.commit()
-    print("🦸‍♀️ Powers added to heroes!")
+    print("Powers added to heroes!")
